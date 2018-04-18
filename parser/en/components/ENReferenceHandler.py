@@ -43,10 +43,12 @@ class ENReferenceHandler(ENBlockHandler):
          """
         # Add references to all previous entries of the same language.
         entry = context.findEntry()
-        # TODO DEBUG THIS!
-        for unassignedSense in [entry.getUnassignedSense() for e in context.getPage().entries if
+
+        for unassignedSense in [e.getUnassignedSense() for e in context.getPage().entries if
                                 Language.isEqual(e.getWordLanguage(), entry.getWordLanguage())]:
             for reference in self.references:
                 unassignedSense.addReference(reference)
+
+        return
 
 
