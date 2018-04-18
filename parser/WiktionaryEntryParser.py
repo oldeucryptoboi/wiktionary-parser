@@ -60,7 +60,7 @@ class WiktionaryEntryParser(IWiktionaryEntryParser):
 
             # Decides if parser take control of the parsing or let a worker object decide if its work is finished.
             parserTakeControl = False
-            EOT = not line
+            EOT = line is None
             while not EOT:
                 line = line.strip()
 
@@ -111,10 +111,6 @@ class WiktionaryEntryParser(IWiktionaryEntryParser):
                     EOT = True
 
         except Exception as e:
-            # DEBUG
-            import traceback
-            traceback.print_exc()
-
             raise RuntimeException("Error while parsing text of article " + page.getTitle(), e)
 
     def createParsingContext(self, page):
