@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from configparser import ConfigParser
 from errors import NoSuchElementException, IOException
 
@@ -96,7 +98,7 @@ class FileInputStream(InputStream):
 
     def __init__(self, file):
         try:
-            self.file = open(file.filepath, 'rb')
+            self.file = open(file.filepath, 'r')
         except Exception:
             raise IOException()
 
@@ -314,3 +316,9 @@ class Stack(list):
 
     def peek(self):
         return self[-1]
+
+
+class TreeSet(OrderedDict):
+
+    def add(self, key):
+        self[key] = None
