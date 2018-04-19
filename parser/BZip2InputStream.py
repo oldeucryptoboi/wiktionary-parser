@@ -7,7 +7,7 @@ class BZip2InputStream(InputStream):
         it hits EOF. Useful for decoding files which contain multiple bz2 streams. """
 
     def __init__(self, file):  # throws FileNotFoundException :
-        self.underlying = bz2.BZ2File(file.filepath, 'rb')
+        self.underlying = bz2.BZ2File(file.filepath, 'r')
 
     def __enter__(self):
         return self
@@ -16,14 +16,18 @@ class BZip2InputStream(InputStream):
         self.underlying.close()
         pass
 
-    def readline(self):  # throws IOException :
-        line = None
-        try:
-            line = self.underlying.readline()
-        except Exception:
+    def __next__(self):
+        line = self.underlying.readline().decode('utf-8').rstrip('\n')
+        if not line:
             self.underlying = None
-        finally:
-            return line
+            raise StopIteration
+        return line
+
+    def __iter__(self):
+        return self
+
+    def readLine(self):  # throws IOException :
+        return self
 
     def read(self, size=1):  # throws IOException :
         byte = None

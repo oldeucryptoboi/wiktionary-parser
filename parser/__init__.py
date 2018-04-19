@@ -8,6 +8,7 @@ from .XMLDumpParser import XMLDumpParser
 from .IWiktionaryMultistreamDumpParser import IWiktionaryMultistreamDumpParser
 from .MultistreamFilter import MultistreamFilter
 from .MultistreamXMLDumpParser import MultistreamXMLDumpParser
+from .MultistreamFilter import MultistreamFilter
 from .WiktionaryDumpParser import WiktionaryDumpParser
 from .WiktionaryEntryParser import WiktionaryEntryParser
 from .WiktionaryArticleParser import WiktionaryArticleParser
@@ -19,10 +20,11 @@ __all__ = ['WiktionaryPageParser',
            'IWiktionaryMultistreamDumpParser',
            'IWiktionaryDumpParser',
            'WiktionaryDumpParser',
-           'BZip2InputStream',
            'IWritableWiktionaryEdition',
            'IWiktionaryPageParser',
            'IWiktionaryEntryParser',
            'XMLDumpParser',
            'WiktionaryArticleParser',
-           'WritableDBWiktionaryEdition']
+           'WritableDBWiktionaryEdition',
+           'MultistreamFilter',
+           'BZip2InputStream']

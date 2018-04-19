@@ -4,12 +4,11 @@ class MultistreamFilter:
         """ @return whether to include the page with pageId and pageTitle in the parse """
         pass
 
+    class IncludingNames:
+        """ A filter which includes only page titles contained in the specified list """
 
-class IncludingNames(MultistreamFilter):
-    """ A filter which includes only page titles contained in  the specified list """
+        def __init__(self, pageNames):
+            self.pageNames = pageNames
 
-    def __init__(self, pageNames):
-        self.pageNames = pageNames
-
-    def accept(self, pageId, pageTitle):
-        return pageTitle in self.pageNames
+        def accept(self, pageId, pageTitle):
+            return pageTitle in self.pageNames

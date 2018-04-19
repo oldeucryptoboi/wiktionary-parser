@@ -7,7 +7,6 @@ from compat import File
 from errors import IllegalStateException
 
 from parser import *
-from parser.MultistreamFilter import IncludingNames
 from parser.util import IDumpInfo
 
 
@@ -165,7 +164,7 @@ class WiktionaryDumpParserTest(unittest.TestCase):
         parser.parseMultistream(
             multistreamDump,
             multistreamDumpIndex,
-            IncludingNames("aardvark"))
+            MultistreamFilter.IncludingNames("aardvark"))
 
         self.assertIsNotNone("did not parse siteInfo", siteInfo[0])
         self.assertEqual(Language.ENGLISH, siteInfo[0].getDumpLanguage())

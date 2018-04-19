@@ -28,24 +28,24 @@ class MultistreamXMLDumpParser:
         self.parser = parser
 
     def parseMultistream(self, dumpFile, indexFile, filter_):  # throws IOException :
-        self.parse(dumpFile, self.collectOffsets(indexFile, filter_))
+        self.parseFile(dumpFile, self.collectOffsets(indexFile, filter_))
 
-    def parse(self, dumpFile, offsets):  # throws IOException :
+    def parseFile(self, dumpFile, offsets):  # throws IOException :
         if not offsets:
             raise IOException("no valid offsets")
 
         offsets.add(0)  # make sure header / siteInfo gets parsed
-        with open(dumpFile, "r") as file:
+        with open(dumpFile.filepath, "r") as file:
             for offset in offsets:
                 # logger.fine("parsing contents at offset " + offset)
                 self.parser.parseStream(self.getInputStreamAtOffset(file, offset))
 
     # noinspection PyMethodMayBeStatic
-    def collectOffsets(self, indexFile, filter_):  # throws IOException :
-        MultistreamXMLDumpParser.logger.fine("parsing index file " + indexFile)
+    def collectOffsets(self, indexFile, filter_):  # throws IOException
+        self.logger.fine("parsing index file " + indexFile.filepath)
         bufferedReader = None
         try:
-            offsets = set()
+            offsets = TreeSet()
             bufferedReader = BZip2InputStream(indexFile)
             for line in bufferedReader.readLine():
                 split = line.split(":", 3)
@@ -62,7 +62,7 @@ class MultistreamXMLDumpParser:
                 bufferedReader.close()
 
     def getInputStreamAtOffset(self, file, offset):  # throws IOException :
-        if offset + 2 >= os.path.getsize(file):
+        if offset + 2 >= os.path.getsize(file.name):
             raise IOException("read past EOF")
 
         file.seek(offset + 2)  # skip past 'BZ' header
