@@ -13,7 +13,7 @@ from parser.util import IDumpInfo
 class WiktionaryDumpParserTest(unittest.TestCase):
     """ Test case for {@link WiktionaryDumpParser}."""
 
-    class MyWiktionaryDumpParser(WiktionaryDumpParser):
+    class _WiktionaryDumpParser(WiktionaryDumpParser):
 
         def __init__(self, outer, expectedValues):
             super().__init__()
@@ -77,7 +77,7 @@ class WiktionaryDumpParserTest(unittest.TestCase):
         expectedValues.append("setText: Text 2\n\n      Test Test")
         expectedValues.append("onPageEnd")
 
-        parser = WiktionaryDumpParserTest.MyWiktionaryDumpParser(self, expectedValues)
+        parser = WiktionaryDumpParserTest._WiktionaryDumpParser(self, expectedValues)
         parser.parseFile(File(os.path.join(os.getcwd(), "resources"), "WiktionaryDumpParserTest.xml"))
         self.assertTrue(not expectedValues)
 
@@ -94,12 +94,12 @@ class WiktionaryDumpParserTest(unittest.TestCase):
         expectedValues.append("setTimestamp: null")
         expectedValues.append("onPageEnd")
 
-        parser = WiktionaryDumpParserTest.MyWiktionaryDumpParser(self, expectedValues)
+        parser = WiktionaryDumpParserTest._WiktionaryDumpParser(self, expectedValues)
         parser.parseFile(File(os.path.join(os.getcwd(), "resources"), "WiktionaryDumpParserNullTest.xml"))
 
     def testParseTimestamp(self):  # throws Exception
         expected = "1956-03-17T21:30:15Z"
-        parser = WiktionaryDumpParserTest.MyWiktionaryDumpParser(self, None)
+        parser = WiktionaryDumpParserTest._WiktionaryDumpParser(self, None)
         self.assertEqual(expected, parser.parseTimestamp("1956-03-17T21:30:15Z"))
         pass
 
@@ -145,13 +145,13 @@ class WiktionaryDumpParserTest(unittest.TestCase):
         pageIds = list()
         siteInfo = [IDumpInfo]
 
-        def onSiteInfoComplete(self, dumpInfo):
+        def onSiteInfoComplete(_, dumpInfo):
             if siteInfo[0] is None:
                 siteInfo[0] = dumpInfo
             else:
                 raise IllegalStateException("received onSiteInfoComplete more than once")
 
-        def setPageId(self, pageId):
+        def setPageId(_, pageId):
             pageIds.append(pageId)
 
         parser = type("_EmptyParser", (WiktionaryDumpParser, WiktionaryDumpParserTest.EmptyParser), {
