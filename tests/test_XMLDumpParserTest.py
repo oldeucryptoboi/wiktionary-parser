@@ -19,7 +19,7 @@ class XMLDumpParserTest(unittest.TestCase):
             "register": (lambda self, pageParser: None),
             "getPageParsers": (lambda self: None)})()
 
-    class MyXMLDumpParser(XMLDumpParser):
+    class _XMLDumpParser(XMLDumpParser):
         def __init__(self, outer, expectedValues):
             self.outer = outer
             self.expectedValues = expectedValues
@@ -75,7 +75,7 @@ class XMLDumpParserTest(unittest.TestCase):
         expectedValues.append("onElementEnd: dump_parser_test")
         expectedValues.append("onParserEnd")
 
-        self.parser = XMLDumpParserTest.MyXMLDumpParser(self, expectedValues)
+        self.parser = XMLDumpParserTest._XMLDumpParser(self, expectedValues)
         self.parser.parseFile(File(os.path.join(os.getcwd(), "resources"), "XMLDumpParserTest.xml"))
         self.assertTrue(not expectedValues)
 
@@ -96,7 +96,7 @@ class XMLDumpParserTest(unittest.TestCase):
         expectedValues.append("onElementEnd: dump_parser_test")
         expectedValues.append("onParserEnd")
 
-        self.parser = XMLDumpParserTest.MyXMLDumpParser(self, expectedValues)
+        self.parser = XMLDumpParserTest._XMLDumpParser(self, expectedValues)
         self.parser.parseFile(File(os.path.join(os.getcwd(), "resources"), "XMLDumpParserTest.xml.bz2"))
         self.assertTrue(not expectedValues)
 

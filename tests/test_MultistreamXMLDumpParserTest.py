@@ -14,7 +14,7 @@ class MultistreamXMLDumpParserTest(unittest.TestCase):
     pageCount = 0.  # atomic
     subject = None
 
-    class MyXMLDumpParser(XMLDumpParser):
+    class _XMLDumpParser(XMLDumpParser):
 
         def __init__(self, outer):
             self.outer = outer
@@ -43,7 +43,7 @@ class MultistreamXMLDumpParserTest(unittest.TestCase):
                                     "enwiktionary-20150224-pages-articles-multistream.xml.bz2")
         self.multistreamDumpIndex = File(os.path.join(os.getcwd(), "resources"),
                                          "enwiktionary-20150224-pages-articles-multistream-index.txt.bz2")
-        self.subject = MultistreamXMLDumpParser(MultistreamXMLDumpParserTest.MyXMLDumpParser(self))
+        self.subject = MultistreamXMLDumpParser(MultistreamXMLDumpParserTest._XMLDumpParser(self))
 
     def _testParseWithOffsets(self):  # throws Exception
         offsets = TreeSet()

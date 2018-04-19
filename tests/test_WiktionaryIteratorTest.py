@@ -9,7 +9,7 @@ class TestWiktionaryIterator(unittest.TestCase):
 
     queue = collections.deque()
 
-    class MyWiktionaryIterator(WiktionaryIterator):
+    class _WiktionaryIterator(WiktionaryIterator):
 
         def __init__(self, outer):
             super().__init__()
@@ -39,7 +39,7 @@ class TestWiktionaryIterator(unittest.TestCase):
 
         self.queue.append("test1")
         self.queue.append("test2")
-        iter1 = self.MyWiktionaryIterator(self)
+        iter1 = self._WiktionaryIterator(self)
         self.assertTrue(iter1.hasNext())
         self.assertFalse(iter1.isClosed())
         self.assertEqual("test1", iter1.next())
@@ -56,7 +56,7 @@ class TestWiktionaryIterator(unittest.TestCase):
         self.wasClosed = False
         
         self.queue.append("")
-        iter1 = self.MyWiktionaryIterator(self)
+        iter1 = self._WiktionaryIterator(self)
         
         self.assertTrue(iter1.hasNext())
         self.assertFalse(iter1.isClosed())
@@ -69,7 +69,7 @@ class TestWiktionaryIterator(unittest.TestCase):
         # Normal iteration, 0 elements.
         self.queue.clear()
         self.wasClosed = False
-        iter1 = self.MyWiktionaryIterator(self)
+        iter1 = self._WiktionaryIterator(self)
         self.assertFalse(iter1.hasNext())
         self.assertTrue(iter1.isClosed())
         self.assertTrue(not self.queue)
@@ -81,7 +81,7 @@ class TestWiktionaryIterator(unittest.TestCase):
         self.queue.append("test1")
         self.queue.append("test2")
         self.queue.append("test3")
-        iter1 = self.MyWiktionaryIterator(self)
+        iter1 = self._WiktionaryIterator(self)
         self.assertTrue(iter1.hasNext())
         self.assertFalse(iter1.isClosed())
         self.assertEqual("test1", iter1.next())
@@ -120,7 +120,7 @@ class TestWiktionaryIterator(unittest.TestCase):
         self.queue.append("test2")
         self.queue.append("test3")
         self.queue.append("test4")
-        iter1 = self.MyWiktionaryIterator(self)
+        iter1 = self._WiktionaryIterator(self)
         self.assertTrue(iter1.hasNext())
         self.assertFalse(iter1.isClosed())
         self.assertEqual("test1", iter1.next())
@@ -146,7 +146,7 @@ class TestWiktionaryIterator(unittest.TestCase):
         self.queue.clear()
         self.wasClosed = False
         self.queue.append("test")
-        iter1 = self.MyWiktionaryIterator(self)
+        iter1 = self._WiktionaryIterator(self)
         self.assertTrue(iter1.hasNext())
         self.assertFalse(iter1.isClosed())
         try:

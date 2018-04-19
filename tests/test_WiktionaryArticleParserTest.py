@@ -13,7 +13,7 @@ from tests import *
 class WiktionaryArticleParserTest(unittest.TestCase, WiktionaryTestCase):
 
     # noinspection PyMissingConstructor
-    class MyWiktionaryDumpParser(WiktionaryDumpParser, IWiktionaryEntryParser):
+    class _WiktionaryDumpParser(WiktionaryDumpParser, IWiktionaryEntryParser):
 
         def __init__(self):  # throws WiktionaryException
             super().__init__()
@@ -31,7 +31,7 @@ class WiktionaryArticleParserTest(unittest.TestCase, WiktionaryTestCase):
         self.testDump = File(self.RESOURCE_PATH, "WiktionaryDumpParserTest.xml")
 
     def testParsedInformation(self):
-        parser = self.MyWiktionaryDumpParser()
+        parser = self._WiktionaryDumpParser()
         parser.parseFile(self.testDump)
         dumpInfo = parser.getDumpInfo()
         self.assertEqual(2, dumpInfo.getProcessedPages())
@@ -121,7 +121,7 @@ class WiktionaryArticleParserTest(unittest.TestCase, WiktionaryTestCase):
             pass
 
     def test_LargeDump(self):
-        parser = self.MyWiktionaryDumpParser()
+        parser = self._WiktionaryDumpParser()
         parser.parseFile(File(self.RESOURCE_PATH, "WiktionaryDumpParserLargeFileTest.xml"))
         self.assertEqual(30000, len(parser.getPages()))
 
