@@ -5,18 +5,18 @@ class WiktionaryWordForm(IWiktionaryWordForm):
     """ Implementation of the :@link IWiktionaryWordForm interface. Instances
         of this class represent inflected word forms. """
 
+    grammaticalNumber = None
+    grammaticalCase = None
+    grammaticalTense = None
+    grammaticalMood = None
+    grammaticalDegree = None
+    grammaticalAspect = None
+    nonFiniteForm = None
+    grammaticalPerson = None
+
     def __init__(self, wordForm):
         """ Instantiates a new word form with the given written form. """
         self.wordForm = wordForm
-
-        self.grammaticalNumber = None
-        self.grammaticalCase = None
-        self.grammaticalTense = None
-        self.grammaticalMood = None
-        self.grammaticalDegree = None
-        self.grammaticalAspect = None
-        self.nonFiniteForm = None
-        self.grammaticalPerson = None
 
     def getWordForm(self):
         return self.wordForm

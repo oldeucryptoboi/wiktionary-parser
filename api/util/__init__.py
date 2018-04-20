@@ -12,3 +12,4 @@ from .GrammaticalMood import GrammaticalMood
 from .GrammaticalNumber import GrammaticalNumber
 from .GrammaticalPerson import GrammaticalPerson
 from .GrammaticalTense import GrammaticalTense
+from .NonFiniteForm import NonFiniteForm
