@@ -1,8 +1,5 @@
 from compat import Logger
-from api.util.GrammaticalPerson import GrammaticalPerson
-from api.util.GrammaticalNumber import GrammaticalNumber
-from api.util.GrammaticalTense import GrammaticalTense
-from api.util.GrammaticalDegree import GrammaticalDegree
+from api.util import GrammaticalPerson, GrammaticalNumber,  GrammaticalTense, GrammaticalDegree
 from api.util.NonFiniteForm import NonFiniteForm
 from api.entry.WiktionaryWordForm import WiktionaryWordForm
 from api.util import TemplateParser

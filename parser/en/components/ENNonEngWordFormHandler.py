@@ -2,7 +2,7 @@ import re
 from api.util import TemplateParser
 from parser.en.components.IWordFormHandler import IWordFormHandler
 from parser.en.components.IHeadwordLineHandler import IHeadwordLineHandler
-from api.util.GrammaticalGender import GrammaticalGender
+from api.util import GrammaticalGender
 
 
 class ENNonEngWordFormHandler(IWordFormHandler, IHeadwordLineHandler, TemplateParser.ITemplateHandler):

@@ -4,3 +4,11 @@ from .HierarchicalWiktionaryIterator import HierarchicalWiktionaryIterator
 from .IWiktionaryIterator import IWiktionaryIterator
 from .TemplateParser import TemplateParser
 from .WiktionaryIterator import WiktionaryIterator
+from .GrammaticalAspect import GrammaticalAspect
+from .GrammaticalCase import GrammaticalCase
+from .GrammaticalDegree import GrammaticalDegree
+from .GrammaticalGender import GrammaticalGender
+from .GrammaticalMood import GrammaticalMood
+from .GrammaticalNumber import GrammaticalNumber
+from .GrammaticalPerson import GrammaticalPerson
+from .GrammaticalTense import GrammaticalTense

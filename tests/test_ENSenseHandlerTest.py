@@ -2,7 +2,7 @@ import unittest
 
 from api import RelationType
 from api.entry import WiktionaryPage
-from api.util.GrammaticalGender import GrammaticalGender
+from api.util import GrammaticalGender
 from compat import List
 from parser.en.components import ENSenseHandler
 from parser.util import ParsingContext

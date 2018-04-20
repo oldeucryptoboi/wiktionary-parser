@@ -29,8 +29,7 @@ class WiktionaryPageFilter(IWiktionaryPageFilter):
             :@link IWiktionaryPage. If no language is specified, the restriction
             on the entry language will be cleared. """
         self.clearAllowedEntryLanguages()
-        for language in allowedEntryLanguages:
-            self.allowedEntryLanguages.add(language)
+        [self.allowedEntryLanguages.add(each) for each in allowedEntryLanguages]
 
     def acceptEntryLanguage(self, page):
         if not self.allowedEntryLanguages:

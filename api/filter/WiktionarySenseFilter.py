@@ -10,7 +10,4 @@ class WiktionarySenseFilter(WiktionaryEntryFilter, IWiktionarySenseFilter):
         super().__init__()
 
     def accept(self, sense):
-        if not self.accept(sense.getEntry()):
-            return False
-
-        return True
+        return self.accept(sense.getEntry())

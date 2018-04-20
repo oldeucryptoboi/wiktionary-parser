@@ -1,6 +1,6 @@
 import unittest
 
-from api.util.GrammaticalGender import GrammaticalGender
+from api.util import GrammaticalGender
 from parser.en.components import ENNonEngWordFormHandler
 from tests import *
 
