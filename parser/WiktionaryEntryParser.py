@@ -111,6 +111,8 @@ class WiktionaryEntryParser(IWiktionaryEntryParser):
                     EOT = True
 
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             raise RuntimeException("Error while parsing text of article " + page.getTitle(), e)
 
     def createParsingContext(self, page):
@@ -120,7 +122,7 @@ class WiktionaryEntryParser(IWiktionaryEntryParser):
         """ Check if the specified text is a redirect and set the redirect target of
             the given Wiktionary page. """
         if text.endswith("]]") and text.startswith(self.redirectTemplate):
-            page.setRedirectTarget(text[len(self.redirectTemplate), text.length() - 2])
+            page.setRedirectTarget(text[len(self.redirectTemplate):len(text) - 2])
             return True
         else:
             return False

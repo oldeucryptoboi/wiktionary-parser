@@ -198,14 +198,8 @@ class PartOfSpeech(Enum):
 
         return result
 
-    @classmethod
-    def isEqual(cls, partOfSpeech1, partOfSpeech2):
-        """ Tests if the specified parts of speech are equal. The method returns
-          <code>True</code> if both parts of speech are <code>None</code>, but
-          <code>False</code> if only one of them is <code>None</code>. """
-        if partOfSpeech1 == partOfSpeech2:
-            return True
-        elif partOfSpeech1 is None or partOfSpeech2 is None:
+    def __eq__(self, other):
+        if other is None or not isinstance(other, PartOfSpeech):
             return False
         else:
-            return partOfSpeech1 == partOfSpeech2
+            return self.value == other.value

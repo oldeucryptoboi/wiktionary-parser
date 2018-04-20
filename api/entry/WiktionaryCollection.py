@@ -89,7 +89,7 @@ class WiktionaryCollection(AbstractWiktionary, IWiktionaryCollection):
 
     def getSenseForKey(self, key, language):
         for edition in self.editions:
-            if Language.equals(edition.getLanguage(), language):
+            if edition.getLanguage() == language:
                 return edition.getSenseForKey(key)
         return None
 

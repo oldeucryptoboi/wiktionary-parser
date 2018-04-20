@@ -17,13 +17,6 @@ class DBWiktionaryEdition(WiktionaryEdition):
          objects serve as a secondary database index. """
 
         def __init__(self, entry):
-            self.entryId = None
-            self.entryKey = None
-            self.pageId = None
-            self.entryIndex = None
-            self.init(entry)
-
-        def init(self, entry):
             """ Instantiates an entry proxy to the given referenced entry. """
             self.entryId = entry.getId()
             self.entryKey = entry.getKey()
@@ -81,27 +74,17 @@ class DBWiktionaryEdition(WiktionaryEdition):
     """ The name of the property file containing info about the parsed DB. """
     PROPERTY_FILE_NAME = "wiktionary.properties"
 
+    pageById = None
+    pageByTitle = None
+    pageByNormalizedTitle = None
+    entryByKey = None
+    entryById = None
+    senseByKey = None
+    openCursors = None
+
     # noinspection PyMissingConstructor
     def __init__(self, parsedWiktionaryDump, isReadOnly=True, allowCreateNew=False, overwriteExisting=False, cacheSize=None):
-        self.dbPath = None
-        self.env = None
-        self.store = None
-        self.dbPath = None
-        self.properties = None
-        self.language = None
-
-        self.pageById = None
-        self.pageByTitle = None
-        self.pageByNormalizedTitle = None
-        self.entryByKey = None
-        self.entryById = None
-        self.senseByKey = None
-        self.openCursors = None
-        self.init(parsedWiktionaryDump, isReadOnly, allowCreateNew, overwriteExisting, cacheSize)
-
-    def init(self, parsedWiktionaryDump, isReadOnly, allowCreateNew, overwriteExisting, cacheSize):
         self.dbPath = parsedWiktionaryDump
-
         try:
             self.connect(isReadOnly, allowCreateNew, overwriteExisting, cacheSize)
         except (DatabaseException, IllegalArgumentException) as e:
@@ -128,7 +111,7 @@ class DBWiktionaryEdition(WiktionaryEdition):
 
         # Load properties.
         self.properties = Properties()
-        propFile = File(self.dbPath, DBWiktionaryEdition.PROPERTY_FILE_NAME)
+        propFile = File(self.dbPath.filepath, DBWiktionaryEdition.PROPERTY_FILE_NAME)
         if propFile.exists():
             try:
                 reader = FileReader(propFile)
@@ -173,7 +156,7 @@ class DBWiktionaryEdition(WiktionaryEdition):
         """ Removes all files belonging to a previously parsed Wiktionary database
            from the given target directory. If not Wiktionary could be found
            there, nothing is changed. """
-        DBWiktionaryEdition.logger.info("Removing parsed Wiktionary from " + targetDirectory)
+        DBWiktionaryEdition.logger.info("Removing parsed Wiktionary from " + str(targetDirectory))
         files = [file for file in targetDirectory.listFiles()]
         # for file in targetDirectory.listFiles:
         #     name = file.getName()

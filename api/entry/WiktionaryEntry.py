@@ -7,24 +7,25 @@ class WiktionaryEntry(IWiktionaryEntry):
     """ Default implementation of the :@link IWiktionaryEntry interface.
         See there for details. """
 
+    id_ = None
+    page = None
+    pageId = 0
+    senses = None
+    partsOfSpeech = None
+    usageNotes = None
+    header = None
+    rawHeadwordLine = None
+    wordLanguage = None
+    wordLanguageStr = None
+    genders = None
+    wordForms = None
+    entryLink = None
+    entryLinkType = None
+    pronunciations = None
+    etymology = None
+    index = 0
+
     def __init__(self, page=None):
-        self.id_ = None
-        self.page = None
-        self.pageId = None
-        self.senses = None
-        self.partsOfSpeech = None
-        self.usageNotes = None
-        self.header = None
-        self.rawHeadwordLine = None
-        self.wordLanguage = None
-        self.wordLanguageStr = None
-        self.genders = None
-        self.wordForms = None
-        self.entryLink = None
-        self.entryLinkType = None
-        self.pronunciations = None
-        self.etymology = None
-        self.index = None
         self.init(page)
 
     def init(self, page):
@@ -51,7 +52,7 @@ class WiktionaryEntry(IWiktionaryEntry):
     # -- Identifier --
 
     def getKey(self):
-        return self.pageId + ":" + self.getIndex()
+        return str(self.pageId) + ":" + str(self.getIndex())
 
     def getId(self):
         return self.id_
@@ -268,4 +269,4 @@ class WiktionaryEntry(IWiktionaryEntry):
         self.usageNotes = usageNotes
 
     def __str__(self):
-        return self.__class__.__name__ + ":" + self.index + ":" + self.wordLanguageStr + ":" + self.getPartOfSpeech()
+        return self.__class__.__name__ + ":" + str(self.index) + ":" + self.wordLanguageStr + ":" + str(self.getPartOfSpeech())

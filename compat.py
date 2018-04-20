@@ -57,11 +57,22 @@ class File:
 
         return True
 
-    def mkdir(self):
+    def getAbsolutePath(self):
+        return self.filepath
+
+    def __str__(self):
+        return self.filepath
+
+    def mkdirs(self):
         try:
             os.mkdir(self.filepath)
+            return True
         except FileExistsError:
             print("File exists!")
+        except NotImplementedError:
+            print("Not implemented.")
+
+        return False
 
     def lastModified(self):
         return os.stat(self.filepath).st_mtime
@@ -202,19 +213,39 @@ class Environment:
         self.path = path
         self.config = config
 
+    def getConfig(self):
+        return self.config
+
+    def sync(self):
+        pass
+
+    def close(self):
+        pass
+
 
 class EnvironmentConfig:
+
     def setAllowCreate(self, allowCreateNew):
+        self.allowCreateNew = allowCreateNew
         pass
 
     def setReadOnly(self, isReadOnly):
+        self.isReadOnly = isReadOnly
         pass
 
     def setTransactional(self, state):
+        self.state = state
         pass
 
     def setCacheSize(self, cacheSize):
+        self.cacheSize = cacheSize
         pass
+
+    def getReadOnly(self):
+        return self.isReadOnly
+
+    def getCacheSize(self):
+        return self.cacheSize
 
 
 class Iterator:

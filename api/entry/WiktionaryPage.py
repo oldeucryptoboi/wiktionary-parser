@@ -9,21 +9,21 @@ class WiktionaryPage(IWiktionaryPage):
     """ Default implementation of the :@link IWiktionaryPage interface.
         See there for details. """
 
+    id_ = None
+    title = None
+    normalizedTitle = None
+    revision = None
+    entryLanguage = None
+    redirectTarget = None
+    author = None
+    timestamp = None
+    entryLanguageStr = None
+
     def __init__(self):
         """ Initialize the page and all of its entries. """
         self.entries = list()
         self.categories = list()
         self.interWikiLinks = set()
-
-        self.id_ = None
-        self.title = None
-        self.normalizedTitle = None
-        self.revision = None
-        self.entryLanguage = None
-        self.redirectTarget = None
-        self.author = None
-        self.timestamp = None
-        self.entryLanguageStr = None
 
     def init(self):
         for entry in self.entries:

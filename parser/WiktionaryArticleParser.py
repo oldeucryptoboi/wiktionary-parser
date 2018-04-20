@@ -40,12 +40,12 @@ class WiktionaryArticleParser(WiktionaryPageParser):
         
         if self.entryParser is not None:
             return
-        if Language.ENGLISH.equals(language):
+        if Language.ENGLISH == language:
             self.entryParser = ENWiktionaryEntryParser()
         else:
             raise WiktionaryException("Language " + language + " is not supported")
 
-        WiktionaryArticleParser.logger.info("Automatically determined dump format: " + language)
+        WiktionaryArticleParser.logger.info("Automatically determined dump format: " + str(language))
     
     def onPageEnd(self):
         self.saveParsedWiktionaryPage()

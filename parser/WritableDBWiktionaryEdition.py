@@ -5,7 +5,8 @@ from parser import *
 from api.entry import DBWiktionaryEdition
 from compat import *
 from errors import *
-from PyWKTL import PyWKTL
+
+import PyWKTL
 
 
 class WritableDBWiktionaryEdition(DBWiktionaryEdition, IWritableWiktionaryEdition):
@@ -23,9 +24,13 @@ class WritableDBWiktionaryEdition(DBWiktionaryEdition, IWritableWiktionaryEditio
             @param cacheSize denotes the size of the cache (in Bytes) used by the
                 DataBase. """
         if cacheSize is None:
-            cacheSize = None  # TODO: Runtime.getRuntime().maxMemory() / 2
+            import os
+            mem_bytes = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')  # e.g. 4015976448
+            mem_gib = mem_bytes / (1024. ** 3)  # e.g. 3.74
+            cacheSize = int(mem_gib / 2)
 
-        super().__init__(dbPath, False, True, overwriteExisting, cacheSize)
+        super().__init__(dbPath, isReadOnly=False, allowCreateNew=True, overwriteExisting=overwriteExisting, cacheSize=cacheSize)
+
         self.pageCount = 0
         self.entryCount = 0
         self.senseCount = 0
@@ -53,7 +58,7 @@ class WritableDBWiktionaryEdition(DBWiktionaryEdition, IWritableWiktionaryEditio
     def commit(self):  # throws WiktionaryException
         isReadOnly = self.env.getConfig().getReadOnly()
         cacheSize = self.env.getConfig().getCacheSize()
-        # env.sync()
+        self.env.sync()
         self.doClose()
         self.connect(isReadOnly, False, False, cacheSize)
 
@@ -69,7 +74,7 @@ class WritableDBWiktionaryEdition(DBWiktionaryEdition, IWritableWiktionaryEditio
             while pageCursor.next() is not None:
                 page = pageCursor.current()
                 if page.getEntryCount() > 0:
-                    for entry in page.entries():
+                    for entry in page.entries:
                         entry.setId(entryId)
                         entryId += 1
                     pageCursor.update(page)
@@ -132,9 +137,9 @@ class WritableDBWiktionaryEdition(DBWiktionaryEdition, IWritableWiktionaryEditio
                 i.e. the case if the DB is in read-only mode. """
         existing = self.pageById.put(page)
         if existing is None:
-            for entry in page.entries():
+            for entry in page.entries:
                 self.entryByKey.put(DBWiktionaryEdition.WiktionaryEntryProxy(entry))
-                for sense in entry.senses():
+                for sense in entry.senses:
                     # Inserts an entity and returns null, or updates it if the primary key
                     # already exists and returns the existing entity.
 

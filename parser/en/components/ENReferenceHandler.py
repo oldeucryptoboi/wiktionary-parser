@@ -25,7 +25,7 @@ class ENReferenceHandler(ENBlockHandler):
         if textLine.startswith("{{quote-"):
             self.inTemplate = True
         elif self.inTemplate or textLine.startswith("|"):
-            if textLine.contains("}}"):
+            if "}}" not in textLine:
                 self.inTemplate = False
         elif textLine.startswith("{{"):
             self.references.append(WikiString(textLine.strip()))
@@ -45,7 +45,7 @@ class ENReferenceHandler(ENBlockHandler):
         entry = context.findEntry()
 
         for unassignedSense in [e.getUnassignedSense() for e in context.getPage().entries if
-                                Language.isEqual(e.getWordLanguage(), entry.getWordLanguage())]:
+                                e.getWordLanguage() == entry.getWordLanguage()]:
             for reference in self.references:
                 unassignedSense.addReference(reference)
 

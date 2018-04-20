@@ -51,7 +51,7 @@ class ENQuotationHandler(ENBlockHandler):
                     line = quot.getLines()[idx].getText() + " " + line
                     quot.getLines()[idx] = WikiString(line.strip())
                 else:
-                    quot.getLines().add(WikiString(line.strip()))
+                    quot.getLines().append(WikiString(line.strip()))
 
         else:
             quotationEntry = Quotation()

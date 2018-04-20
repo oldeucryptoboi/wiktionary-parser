@@ -14,3 +14,4 @@ from .IWiktionaryRelation import IWiktionaryRelation
 from .IWiktionaryExample import IWiktionaryExample
 from .IWiktionaryWordForm import IWiktionaryWordForm
 from .IWiktionaryTranslation import IWiktionaryTranslation
+from .WiktionaryFormatter import WiktionaryFormatter

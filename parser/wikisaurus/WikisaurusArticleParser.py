@@ -166,10 +166,10 @@ class WikisaurusArticleParser(IWiktionaryPageParser):
             return
 
         # Find the Wiktionary entry within the Wiktionary page.
-        for entry in page.entries():
-            if not Language.isEqual(entry.getWordLanguage(), wikisaurusEntry.getLanguage()):
+        for entry in page.entries:
+            if entry.getWordLanguage() != wikisaurusEntry.getLanguage():
                 continue
-            if not PartOfSpeech.isEqual(entry.getPartOfSpeech(), wikisaurusEntry.getPartOfSpeech()):
+            if entry.getPartOfSpeech() != wikisaurusEntry.getPartOfSpeech():
                 continue
 
             sense = ENSemanticRelationHandler.findMatchingSense(entry, wikisaurusEntry.getSenseDefinition())

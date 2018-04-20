@@ -1,7 +1,3 @@
-from api import PartOfSpeech
-from api.util import Language
-
-
 class EntryFactory:
     """ Factory for :@link WiktionaryEntrys used by the parsers. """
 
@@ -13,9 +9,9 @@ class EntryFactory:
         language = context.getLanguage()
         partOfSpeech = context.getPartOfSpeech()
 
-        posEntryList = list(filter(lambda entry: Language.isEqual(language, entry.getWordLanguage()),
+        posEntryList = list(filter(lambda entry: language == entry.getWordLanguage(),
                                    list(
-                                       filter(lambda entry: PartOfSpeech.isEqual(partOfSpeech, entry.getPartOfSpeech()),
+                                       filter(lambda entry: partOfSpeech == entry.getPartOfSpeech(),
                                               context.getPage().entries))))
 
         if not posEntryList:

@@ -36,13 +36,13 @@ class Language(ILanguage):
         return self.iso639_1
 
     def compareTo(self, other):
-        return 0 if self.equals(other) else self.code.compareTo(other.getCode())
+        return 0 if self == other else self.code.compareTo(other.getCode())
 
-    def equals(self, other):
-        if other is None or not (other.__class__ == "ILanguage"):
+    def __eq__(self, other):
+        if other is None or not isinstance(other, ILanguage):
             return False
         else:
-            return self.code.equals(other).getCode()
+            return self.code == other.getCode()
 
     def __str__(self):
         return self.name
@@ -165,19 +165,6 @@ class Language(ILanguage):
             return None
         cls.initialize()
         return cls.get(cls.additionalNameIndex.get(name.strip().lower(), None))
-
-    @staticmethod
-    def isEqual(language1, language2):
-        """ Tests if the specified languages are equal. The method returns
-            <code>True</code> if both languages are <code>None</code>, but
-            <code>False</code> if only one of them is <code>None</code>. """
-        if language1 == language2:
-            return True
-        else:
-            if language1 is None or language2 is None:
-                return False
-            else:
-                return language1.equals(language2)
 
 
 """ The English language. """

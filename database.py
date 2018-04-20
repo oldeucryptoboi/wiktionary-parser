@@ -9,6 +9,10 @@ class PrimaryIndex(BasicIndex):
     def gef(self):
         pass
 
+    def put(self, entity):
+        print("storing " + str(entity))
+        return None
+
 
 class SecondaryIndex(BasicIndex):
     def gef(self):
@@ -39,6 +43,9 @@ class EntityStore:
     # noinspection PyMethodMayBeStatic
     def getSecondaryIndex(self, id_, cls, name):
         return SecondaryIndex()
+
+    def close(self):
+        pass
 
 
 class CursorConfig(Enum):

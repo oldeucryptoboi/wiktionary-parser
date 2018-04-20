@@ -36,7 +36,7 @@ class ParsingContext:
         """ Save the specified language in the context object. If the language
             changes, the header, part of speech tag, etymology, and pronunciations
             are reset to <code>None</code>. """
-        if not Language.isEqual(language, self.language):
+        if language != self.language:
             # Language has changed: reset part of speech, etymology, and pronunciation.
             self.language = language
             self.header = None
