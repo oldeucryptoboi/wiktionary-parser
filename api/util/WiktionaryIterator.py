@@ -5,6 +5,7 @@ from errors import NoSuchElementException, UnsupportedOperationException
 class WiktionaryIterator(IWiktionaryIterator):
     """   Default implementation of the :@link IWiktionaryIterator interface. """
 
+    # noinspection PyMissingConstructor
     def __init__(self):
         self.nextValue = None
         self.closed = False
