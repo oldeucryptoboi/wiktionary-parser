@@ -1,6 +1,6 @@
 from .AbstractWiktionary import AbstractWiktionary
 from api import IWiktionaryCollection
-from api.util import HierarchicalWiktionaryIterator, Language
+from api.util import HierarchicalWiktionaryIterator
 
 from errors import IllegalStateException
 from compat import List
@@ -45,7 +45,7 @@ class WiktionaryCollection(AbstractWiktionary, IWiktionaryCollection):
 
         return None
 
-    def getPagesForWord_(self, word, filter_=None):
+    def getPagesForWord_(self, word, filter_=None, normalize=False):
         result = list()
         for edition in self.editions:
             page = edition.getPageForWord(word)
