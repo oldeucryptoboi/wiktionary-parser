@@ -17,3 +17,6 @@ class GrammaticalNumber(Enum):
 #  QUADRAL, # 4 items
 #  PAUCAL, # few items
 #  DISTRIBUTIVE_PLURAL, # independent instances
+
+    def __str__(self):
+        return str(self.name)

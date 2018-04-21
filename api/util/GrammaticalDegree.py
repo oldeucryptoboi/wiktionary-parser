@@ -16,3 +16,6 @@ class GrammaticalDegree(Enum):
     SUPERLATIVE = 3
 
 #   RELATIVE,
+
+    def __str__(self):
+        return str(self.name)

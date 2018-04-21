@@ -15,3 +15,6 @@ class GrammaticalTense(Enum):
 
     """ The future an utterance refers to the time after a reference time. """
     FUTURE = 3
+
+    def __str__(self):
+        return str(self.name)

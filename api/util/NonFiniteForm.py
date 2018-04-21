@@ -19,3 +19,6 @@ class NonFiniteForm(Enum):
 #  CONVERB
 #  GERUNDIVE
 #  GERUND
+
+    def __str__(self):
+        return str(self.name)

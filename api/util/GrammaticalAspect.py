@@ -29,3 +29,6 @@ class GrammaticalAspect(Enum):
 #        Durative
 #        Imperfect
 #        Iterative/distributive/frequentative
+
+    def __str__(self):
+        return str(self.name)

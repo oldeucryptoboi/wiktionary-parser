@@ -25,3 +25,6 @@ class GrammaticalCase(Enum):
 # VOCATIVE, # indicates addressee
 # LOCATIVE, # indicates locatoin
 # INSTRUMENTAL, # indicates intrument used for action
+
+    def __str__(self):
+        return str(self.name)

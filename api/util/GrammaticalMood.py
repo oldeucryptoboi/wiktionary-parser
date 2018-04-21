@@ -23,3 +23,6 @@ class GrammaticalMood(Enum):
 #    JUSSIVE,
 #    POTENTIAL,
 #    INTERROGATIVE
+
+    def __str__(self):
+        return str(self.name)

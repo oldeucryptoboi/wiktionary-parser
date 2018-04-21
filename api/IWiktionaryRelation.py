@@ -24,6 +24,9 @@ class IWiktionaryRelation:
 
         # DANGLING, NOT_LINKED,
 
+        def __str__(self):
+            return self.name
+
     def getTarget(self):
         """ Returns the target word form of this relation. """
         pass

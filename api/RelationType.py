@@ -73,3 +73,6 @@ class RelationType(Enum):
        or just a single word without $ARTICLE (e.g., "strong") that co-occurs
        anywhere with the word $ARTICLE. """
     CHARACTERISTIC_WORD_COMBINATION = 13
+
+    def __str__(self):
+        return str(self.name)

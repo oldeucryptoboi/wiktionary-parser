@@ -15,7 +15,7 @@ class IWiktionary:
             @throws WiktionaryException upon database errors. """
         pass
 
-    def getAllPages(self, filter_, sortByTitle, normalize):
+    def getAllPages(self, filter_=None, sortByTitle=False, normalize=False):
         """ Returns an iterator over all :@link IWiktionaryPages within
             the Wiktionary edition. Using the given :@link IWiktionaryPageFilter,
             unwanted pages can be ignored.
@@ -27,7 +27,7 @@ class IWiktionary:
 
     # -- Entries --
 
-    def getEntriesForWord(self, word, filter_, normalize):
+    def getEntriesForWord(self, word, filter_=None, normalize=False):
         """ Returns a list of :@link IWiktionaryEntrys encoded on a page with
             the given title. Using the given  :@link IWiktionaryEntryFilter,
             unwanted entries can be ignored.
@@ -37,7 +37,7 @@ class IWiktionary:
             @throws WiktionaryException upon database errors. """
         pass
 
-    def getAllEntries(self, filter_, sortByTitle, normalize):
+    def getAllEntries(self, filter_=None, sortByTitle=False, normalize=False):
         """ Returns an iterator over all :@link IWiktionaryEntrys within
             the Wiktionary edition. This is equivalent to iterating over all
             pages using :@link IWiktionaryEdition#getAllPages(boolean, boolean)
@@ -54,7 +54,7 @@ class IWiktionary:
 
     # -- Senses --
 
-    def getSensesForWord(self, word, filter_, normalize):
+    def getSensesForWord(self, word, filter_=None, normalize=False):
         """ Returns a list of :@link IWiktionarySenses encoded on a page with
             the given title. Using the given  :@link IWiktionarySenseFilter,
             unwanted word senses can be ignored.

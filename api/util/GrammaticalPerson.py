@@ -13,3 +13,6 @@ class GrammaticalPerson(Enum):
     """ The third person the other referred to by "he", "she", 
          "it", "they". """
     THIRD = 3
+
+    def __str__(self):
+        return str(self.name)

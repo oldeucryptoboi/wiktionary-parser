@@ -19,3 +19,6 @@ class GrammaticalGender(Enum):
 #    NON_HUMAN
 #    ANIMAL
 #    OTHER
+
+    def __str__(self):
+        return str(self.name)
