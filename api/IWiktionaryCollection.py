@@ -34,7 +34,7 @@ class IWiktionaryCollection(IWiktionary):
             @throws WiktionaryException upon database errors. """
         pass
 
-    def getPagesForWord(self, word, filter_, normalize):
+    def getPagesForWord(self, word, filter_=None, normalize=False):
         """ Returns all pages with the given title. The method only returns the
             page if its title matches exactly. Use
             :param **kwargs:
