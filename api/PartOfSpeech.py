@@ -203,3 +203,6 @@ class PartOfSpeech(Enum):
             return False
         else:
             return self.value == other.value
+
+    def __str__(self):
+        return str(self.name)
