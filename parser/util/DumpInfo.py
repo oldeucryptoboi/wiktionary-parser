@@ -4,16 +4,16 @@ from .IDumpInfo import IDumpInfo
 class DumpInfo(IDumpInfo):
     """ Default implementation of the :@link IDumpInfo interface. """
 
+    dumpLanguage = None
+    namespaces = None
+    processedPages = None
+
     def __init__(self, dumpFile, parser):
         """ Instanciate the dump info object for the given dump file and parser
          *  object. """
         self.dumpFile = dumpFile
         self.parser = parser
         self.reset()
-
-        self.dumpLanguage = None
-        self.namespaces = None
-        self.processedPages = None
 
     def reset(self):
         self.namespaces = set()
