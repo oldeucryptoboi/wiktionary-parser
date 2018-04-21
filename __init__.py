@@ -1,3 +1,3 @@
-from PyWKTL import PyWKTL
+from .PyWKTL import PyWKTL
 
 __all__ = ['PyWKTL']
