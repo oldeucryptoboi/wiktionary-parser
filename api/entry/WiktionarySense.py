@@ -6,7 +6,7 @@ class WiktionarySense(IWiktionarySense):
         See there for details. """
 
     def __init__(self):
-        self.entry = None
+        self._entry = None
         self.entryId = None
         self.index = 0
         self.marker = None
@@ -21,7 +21,7 @@ class WiktionarySense(IWiktionarySense):
         """ Initialize the sense using the given Wiktionary entry. This is necessary
             to initialize the back references to the parent entry, which are not
             explicitly stored in the database. """
-        self.entry = entry
+        self._entry = entry
         self.entryId = entry.getId()
 
     # -- Identifier --
@@ -53,10 +53,10 @@ class WiktionarySense(IWiktionarySense):
     # -- Parent --
 
     def getEntry(self):
-        return self.entry
+        return self._entry
 
     def getPage(self):
-        return self.entry.getPage()
+        return self._entry.getPage()
 
     # -- Sense --
 

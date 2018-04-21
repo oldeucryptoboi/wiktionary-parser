@@ -5,17 +5,17 @@ class WiktionaryRelation(IWiktionaryRelation):
     """ Default implementation of the :@link IWiktionaryRelation interface.
         See there for details. """
 
-    def __init__(self, target, type_):
+    def __init__(self, target, type):
         """ Creates a new relation for the given target and relation type. """
         self.target = target
-        self.type_ = type_
-        # self.relationSourceType = RelationSourceType.ENTRY
+        self.type = type
+        # self.entryLanguageStr = RelationSourceType.ENTRY
         self.targetSense = None
 
         self.linkType = None
 
     def getRelationType(self):
-        return self.type_
+        return self.type
 
     def getTarget(self):
         return self.target
@@ -35,4 +35,4 @@ class WiktionaryRelation(IWiktionaryRelation):
         self.linkType = linkType
 
     def __str__(self):
-        return self.type_ + ":" + self.target
+        return self.type + ":" + self.target

@@ -1,5 +1,6 @@
 import unicodedata
 import re
+
 from api.util import Language
 from .WiktionaryEntry import WiktionaryEntry
 from api import IWiktionaryPage
@@ -9,21 +10,21 @@ class WiktionaryPage(IWiktionaryPage):
     """ Default implementation of the :@link IWiktionaryPage interface.
         See there for details. """
 
-    id_ = None
-    title = None
-    normalizedTitle = None
-    revision = None
-    entryLanguage = None
-    redirectTarget = None
-    author = None
-    timestamp = None
-    entryLanguageStr = None
-
     def __init__(self):
         """ Initialize the page and all of its entries. """
         self.entries = list()
         self.categories = list()
         self.interWikiLinks = set()
+
+        self.id = None
+        self.title = None
+        self.normalizedTitle = None
+        self.revision = None
+        self._entryLanguage = None
+        self.redirectTarget = None
+        self.author = None
+        self.timestamp = None
+        self.entryLanguageStr = None
 
     def init(self):
         for entry in self.entries:
@@ -39,14 +40,14 @@ class WiktionaryPage(IWiktionaryPage):
     # -- Identifier --
     
     def getKey(self):
-        return str(self.id_)
+        return str(self.id)
     
     def getId(self):
-        return self.id_
+        return self.id
 
-    def setId(self, id_):
+    def setId(self, id):
         """ Assign the specified page ID. """
-        self.id_ = id_
+        self.id = id
     
     # -- Page --
     
@@ -80,13 +81,13 @@ class WiktionaryPage(IWiktionaryPage):
         self.author = author
 
     def getEntryLanguage(self):
-        if self.entryLanguage is None and self.entryLanguageStr is not None:
-            self.entryLanguage = Language.get(self.entryLanguageStr)
-        return self.entryLanguage
+        if self._entryLanguage is None and self.entryLanguageStr is not None:
+            self._entryLanguage = Language.get(self.entryLanguageStr)
+        return self._entryLanguage
     
     def setEntryLanguage(self, entryLanguage):
         """ Assigns the given entry language to this page. """
-        self.entryLanguage = entryLanguage
+        self._entryLanguage = entryLanguage
         if entryLanguage is not None:
             self.entryLanguageStr = entryLanguage.getCode()
 
@@ -133,8 +134,8 @@ class WiktionaryPage(IWiktionaryPage):
         return self.entries
 
     def __str__(self):
-        return self.__class__.__name__ + ":" + str(self.id_) + ":" + self.title
-    
+        return self.__class__.__name__ + ":" + str(self.id) + ":" + self.title
+
     # -- Normalize --
 
     @staticmethod

@@ -7,41 +7,36 @@ class WiktionaryEntry(IWiktionaryEntry):
     """ Default implementation of the :@link IWiktionaryEntry interface.
         See there for details. """
 
-    id_ = None
-    page = None
-    pageId = 0
-    senses = None
-    partsOfSpeech = None
-    usageNotes = None
-    header = None
-    rawHeadwordLine = None
-    wordLanguage = None
-    wordLanguageStr = None
-    genders = None
-    wordForms = None
-    entryLink = None
-    entryLinkType = None
-    pronunciations = None
-    etymology = None
-    index = 0
+    def __init__(self):
+        self.partsOfSpeech = list()
+        self.senses = list()
+        self.senses.append(WiktionarySense())  # Dummy sense for all unassigned information.
 
-    def __init__(self, page=None):
-        self.init(page)
+        self.id = None
+        self._page = None
+        self.pageId = 0
+        self.usageNotes = None
+        self.header = None
+        self._rawHeadwordLine = None
+        self._wordLanguage = None
+        self.wordLanguageStr = None
+        self.genders = None
+        self.wordForms = None
+        self.entryLink = None
+        self.entryLinkType = None
+        self.pronunciations = None
+        self.etymology = None
+        self.index = 0
 
     def init(self, page):
         """ Initialize the entry using the given Wiktionary page. This is necessary
             to initialize the back references to the parent page, which are not
             explicitly stored in the database. """
 
-        if page is None:
-            self.partsOfSpeech = list()
-            self.senses = list()
-            self.senses.append(WiktionarySense())  # Dummy sense for all unassigned information.
-        else:
-            self.page = page
-            self.pageId = page.getId()
-            for sense in self.senses:
-                sense.init(self)
+        self._page = page
+        self.pageId = page.getId()
+        for sense in self.senses:
+            sense.init(self)
 
     def createSense(self):
         """ Factory method for creating a new word sense. """
@@ -55,11 +50,11 @@ class WiktionaryEntry(IWiktionaryEntry):
         return str(self.pageId) + ":" + str(self.getIndex())
 
     def getId(self):
-        return self.id_
+        return self.id
 
     def setId(self, id_):
         """ Assign the specified entry ID. """
-        self.id_ = id_
+        self.id = id_
 
     def getIndex(self):
         return self.index
@@ -67,7 +62,7 @@ class WiktionaryEntry(IWiktionaryEntry):
     # -- Parent --
 
     def getPage(self):
-        return self.page
+        return self._page
 
     def getPageId(self):
         return self.pageId
@@ -86,19 +81,19 @@ class WiktionaryEntry(IWiktionaryEntry):
         self.header = header
 
     def getRawHeadwordLine(self):
-        return self.rawHeadwordLine
+        return self._rawHeadwordLine
 
     def setRawHeadwordLine(self, rawHeadwordLine):
-        self.rawHeadwordLine = rawHeadwordLine
+        self._rawHeadwordLine = rawHeadwordLine
 
     def getWordLanguage(self):
-        if self.wordLanguage is None and self.wordLanguageStr is not None:
-            self.wordLanguage = Language.get(self.wordLanguageStr)
-        return self.wordLanguage
+        if self._wordLanguage is None and self.wordLanguageStr is not None:
+            self._wordLanguage = Language.get(self.wordLanguageStr)
+        return self._wordLanguage
 
     def setWordLanguage(self, wordLanguage):
         """ Assigns the given word language. """
-        self.wordLanguage = wordLanguage
+        self._wordLanguage = wordLanguage
         if wordLanguage is not None:
             self.wordLanguageStr = wordLanguage.getCode()
 

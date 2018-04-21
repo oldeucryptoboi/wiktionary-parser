@@ -9,7 +9,7 @@ class WiktionaryTranslation(IWiktionaryTranslation):
     def __init__(self, language=None, translation=None):
         """ Creates a new translation for the given language and translation
          *  string. """
-        self.language = language
+        self._language = language
         if language is not None:
             self.languageStr = language.getCode()
         self.translation = translation
@@ -20,9 +20,9 @@ class WiktionaryTranslation(IWiktionaryTranslation):
         self.gender = None
 
     def getLanguage(self):
-        if self.language is None and self.languageStr is not None:
-            self.language = Language.get(self.languageStr)
-        return self.language
+        if self._language is None and self.languageStr is not None:
+            self._language = Language.get(self.languageStr)
+        return self._language
 
     def getTranslation(self):
         return self.translation
