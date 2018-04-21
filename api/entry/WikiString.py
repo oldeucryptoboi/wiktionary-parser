@@ -7,6 +7,7 @@ class WikiString(IWikiString):
         wiki markup language) on demand instead of storing the parsed information
         in the database. """
 
+    # noinspection PyMissingConstructor
     def __init__(self, text):
         """ Create a new wiki string for the given wiki markup text. """
         self.text = text
@@ -62,10 +63,10 @@ class WikiString(IWikiString):
             removed or substituted in order to obtain a human-readable text. """
         result = wikiText
         result = result.replace("\t", " ")
-        result = re.sub(WikiString.COMMENT_PATTERN, "", result)
-        result = re.sub(WikiString.QUOTES_PATTERN, "", result)
-        result = WikiString.removeWikiLinks(result)
-        # result = WikiString.EXTERNAL_LINK_PATTERN.matcher(result).replaceAll("")
+        result = re.sub(self.COMMENT_PATTERN, "", result)
+        result = re.sub(self.QUOTES_PATTERN, "", result)
+        result = self.removeWikiLinks(result)
+        # result = self.EXTERNAL_LINK_PATTERN.matcher(result).replaceAll("")
         result = re.sub(self.REFERENCES_PATTERN, "", result)
         result = re.sub(self.TEMPLATE_PATTERN, "", result)
         result = re.sub(self.HTML_PATTERN, "", result)
