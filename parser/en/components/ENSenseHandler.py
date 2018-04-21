@@ -1,12 +1,8 @@
 import re
 
-from api.entry.WiktionaryRelation import WiktionaryRelation
-from api.util import Language
-from api.util import TemplateParser
-from api import PartOfSpeech
-from api.entry.WikiString import WikiString
-from api.entry.WiktionaryExample import WiktionaryExample
-from api import RelationType
+from api.entry import WiktionaryRelation, WikiString, WiktionaryExample
+from api.util import Language, TemplateParser
+from api import PartOfSpeech, RelationType
 
 from parser.en.components.ENBlockHandler import ENBlockHandler
 from parser.en.components.ENWordFormHandler import ENWordFormHandler

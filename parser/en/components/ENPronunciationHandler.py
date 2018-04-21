@@ -1,10 +1,10 @@
 import re
 
 from api import IPronunciation
+from api.entry import Pronunciation
 from api.util import TemplateParser
 from parser.en.components import ENBlockHandler
 from parser.util import StringUtils
-from api.entry.Pronunciation import Pronunciation
 
 
 class ENPronunciationHandler(ENBlockHandler):

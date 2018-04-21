@@ -1,6 +1,5 @@
 from parser.en.components.ENBlockHandler import ENBlockHandler
-from api.entry.WikiString import WikiString
-from api.entry.Quotation import Quotation
+from api.entry import WikiString, Quotation
 
 
 class ENQuotationHandler(ENBlockHandler):

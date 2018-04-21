@@ -1,12 +1,9 @@
 import re
 from collections import OrderedDict as TreeMap
 
-from api.entry.WikiString import WikiString
-from parser.en.components.ENBlockHandler import ENBlockHandler
-from api.entry.WiktionaryTranslation import WiktionaryTranslation
-from api.util import Language
-from api.util import TemplateParser
-from parser.en.components.ENSemanticRelationHandler import ENSemanticRelationHandler
+from api.entry import WikiString, WiktionaryTranslation
+from parser.en.components import ENBlockHandler, ENSemanticRelationHandler
+from api.util import Language, TemplateParser
 from parser.util import StringUtils
 
 

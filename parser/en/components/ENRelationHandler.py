@@ -1,6 +1,6 @@
 from parser.en.components.ENBlockHandler import ENBlockHandler
 from errors import RuntimeException
-from api.entry.WiktionaryRelation import WiktionaryRelation
+from api.entry import WiktionaryRelation
 from parser.en.components.WordList import WordList
 
 

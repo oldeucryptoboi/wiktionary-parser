@@ -1,6 +1,6 @@
 from parser.en.components.ENBlockHandler import ENBlockHandler
 from parser.util import StringUtils
-from api.entry.WikiString import WikiString
+from api.entry import WikiString
 
 
 class ENEtymologyHandler(ENBlockHandler):

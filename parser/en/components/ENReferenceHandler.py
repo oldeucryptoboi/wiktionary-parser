@@ -1,6 +1,6 @@
 from api.util import Language
 from parser.en.components.ENBlockHandler import ENBlockHandler
-from api.entry.WikiString import WikiString
+from api.entry import WikiString
 
 
 class ENReferenceHandler(ENBlockHandler):

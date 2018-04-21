@@ -1,6 +1,6 @@
 from parser.util import SimilarityUtils
 from parser.en.components.ENRelationHandler import ENRelationHandler
-from api.entry.WikiString import WikiString
+from api.entry import WikiString
 
 
 class ENSemanticRelationHandler(ENRelationHandler):
