@@ -41,7 +41,7 @@ class WiktionaryPageParser(WiktionaryPage, IWiktionaryPageParser):
     def setPageId(self, pageId):
         self.page.setId(pageId)
 
-    def setTitle(self, title, namespace):
+    def setTitle(self, title, namespace=None):
         self.currentNamespace = namespace
         self.page.setTitle(title)
 
