@@ -50,7 +50,7 @@ class IWiktionaryPageParser:
         """ Hotspot that is invoked after the current page's id is read. """
         pass
 
-    def setTitle(self, title, namespace):
+    def setTitle(self, title, namespace=None):
         """ Hotspot that is invoked after the current page's title is read.
             @param title
             @param namespace """
