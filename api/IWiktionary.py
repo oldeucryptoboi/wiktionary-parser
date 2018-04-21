@@ -4,7 +4,7 @@ class IWiktionary:
 
     # -- Pages --
 
-    def getPagesForWord(self, word, filter_, normalize):
+    def getPagesForWord(self, word, filter_=None, normalize=False):
         """ Returns the page with the given title. The method returns also pages,
             whose title matches in a case insensitive or string-normalized manner.
             The latter means that strings are converted to lower case, and
@@ -64,7 +64,7 @@ class IWiktionary:
             @throws WiktionaryException upon database errors. """
         pass
 
-    def getAllSenses(self, filter_, sortByTitle, normalize):
+    def getAllSenses(self, filter_=None, sortByTitle=False, normalize=False):
         """ Returns an iterator over all :@link IWiktionaryEntrys within
             the Wiktionary edition. This is equivalent to iterating over all
             pages using :@link IWiktionaryEdition#getAllPages(boolean, boolean)
