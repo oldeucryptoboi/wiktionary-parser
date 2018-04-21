@@ -1,6 +1,52 @@
 from enum import Enum
 
 
+class Environment:
+    def __init__(self, path, config):
+        self.path = path
+        self.config = config
+
+    def getConfig(self):
+        return self.config
+
+    def sync(self):
+        pass
+
+    def close(self):
+        pass
+
+
+class EnvironmentConfig:
+
+    allowCreateNew = False
+    isReadOnly = False
+    state = False
+    cacheSize = False
+
+
+    def setAllowCreate(self, allowCreateNew):
+        self.allowCreateNew = allowCreateNew
+        pass
+
+    def setReadOnly(self, isReadOnly):
+        self.isReadOnly = isReadOnly
+        pass
+
+    def setTransactional(self, state):
+        self.state = state
+        pass
+
+    def setCacheSize(self, cacheSize):
+        self.cacheSize = cacheSize
+        pass
+
+    def getReadOnly(self):
+        return self.isReadOnly
+
+    def getCacheSize(self):
+        return self.cacheSize
+
+
 class BasicIndex:
     pass
 
