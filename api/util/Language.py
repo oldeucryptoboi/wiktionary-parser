@@ -9,6 +9,7 @@ class Language(ILanguage):
         not be instantiated by yourself. Use the static methods to find registered
         instances - either by language code or name. """
 
+    # noinspection PyMissingConstructor
     def __init__(self, code, name, iso639_3, iso639_2b, iso639_2t, iso639_1):
         self.code = code
         self.name = name
