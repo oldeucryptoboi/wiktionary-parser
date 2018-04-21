@@ -5,6 +5,7 @@ class Pronunciation(IPronunciation):
     """ Default implementation of the :@link IPronunciation interface.
         See there for details. """
 
+    # noinspection PyMissingConstructor
     def __init__(self, type, text, note):
         """ Creates a new pronunciation for the given representation text,
             notation type and addition information. For audio files, the
@@ -21,3 +22,4 @@ class Pronunciation(IPronunciation):
 
     def getNote(self):
         return self.note
+
