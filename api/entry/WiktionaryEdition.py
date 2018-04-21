@@ -29,7 +29,7 @@ class WiktionaryEdition(AbstractWiktionary, IWiktionaryEdition):
         page = self.getPageForWord(word)
         return None if page is None else page.getEntries().get(entryIdx)
 
-    def getEntriesForWord(self, word, filter_, normalize):
+    def getEntriesForWord(self, word, filter_=None, normalize=False):
         self.ensureOpen()
         if word is None or not len(word):
             return list()
@@ -37,7 +37,7 @@ class WiktionaryEdition(AbstractWiktionary, IWiktionaryEdition):
             return list(entry for entry in flatMap(self.getPagesForWord(word, normalize)) if
                         filter_ is None or filter_.accept(entry))
 
-    def getAllEntries(self, filter_, sortByTitle, normalize=False):
+    def getAllEntries(self, filter_=None, sortByTitle=False, normalize=False):
         self.ensureOpen()
 
         # noinspection PyShadowingNames
@@ -97,7 +97,7 @@ class WiktionaryEdition(AbstractWiktionary, IWiktionaryEdition):
             entry = self.getEntryForWord(word, entryIdx)
             return None if entry is None else entry.getSense(senseIdx)
 
-    def getSensesForWord(self, word, filter_, normalize):
+    def getSensesForWord(self, word, filter_=None, normalize=False):
         self.ensureOpen()
         result = list()
         if not word:
@@ -112,7 +112,7 @@ class WiktionaryEdition(AbstractWiktionary, IWiktionaryEdition):
 
         return result
 
-    def getAllSenses(self, filter_, sortByTitle, normalize):
+    def getAllSenses(self, filter_=None, sortByTitle=False, normalize=False):
         self.ensureOpen()
 
         # noinspection PyShadowingNames
