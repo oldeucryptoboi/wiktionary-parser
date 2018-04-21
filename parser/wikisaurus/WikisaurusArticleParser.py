@@ -13,6 +13,7 @@ class WikisaurusArticleParser(IWiktionaryPageParser):
     """ (Yet experimental) parser for the Wikisaurus entries (i.e., wiki pages
         in the Wikisaurus namespace that contain thesaurus-like information). """
 
+    # noinspection PyMissingConstructor
     def __init__(self,  wiktionaryDB):
         """ Instantiates the parser for the given database. """
         self.wiktionaryDB = wiktionaryDB
@@ -74,7 +75,7 @@ class WikisaurusArticleParser(IWiktionaryPageParser):
     def setPageId(self, pageId):
         pass
 
-    def setTitle(self, title, namespace):
+    def setTitle(self, title, namespace=None):
         self.currentTitle = title
         self.currentNamespace = namespace
 
